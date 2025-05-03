@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import CustomSelect from "@/components/customSelect";
@@ -43,15 +43,7 @@ export default function ProfessionalDataForm({
 	ButtonSubmit,
 }: ProfessionalDataFormProps) {
 	const dispatch = useDispatch();
-	const employeeQuery = useEmployee(employeeId || ""); // Provide a fallback empty string or undefined
-
-	// Then adjust your useEffect to handle the case when employeeId is not provided
-	useEffect(() => {
-		if (employeeId && employeeQuery?.data) {
-			dispatch(setEmployeeData(employeeQuery.data));
-		}
-	}, [employeeQuery?.data, dispatch, employeeId]);
-
+	const employeeQuery = useEmployee(employeeId || "");
 	const employee = useTypedSelector((state) => state.employee.employee);
 	const t = useTranslations();
 	const [selectedWorkNature, setSelectedWorkNature] = useState("");
@@ -62,26 +54,57 @@ export default function ProfessionalDataForm({
 	const { data: alldepartments, isLoading: departmentsLoading } =
 		useGetAlldepartments();
 
-	// Reusable handler for input changes
-	const handleInputChange =
-		(field: keyof typeof employee) =>
-		(e: React.ChangeEvent<HTMLInputElement>) => {
-			dispatch(setEmployeeData({ [field]: e.target.value }));
-		};
+	// Memoize facility options
+	const facilityOptions = useMemo(
+		() =>
+			allFacilaties?.map((el: { name: any; id: any }) => ({
+				label: el?.name,
+				value: el?.id,
+			})) || [],
+		[allFacilaties]
+	);
 
-	// Reusable handler for select changes
-	const handleSelectChange =
+	// Memoize department options
+	const departmentOptions = useMemo(
+		() =>
+			alldepartments?.map((el: { name: any; id: any }) => ({
+				label: el?.name,
+				value: el?.id,
+			})) || [],
+		[alldepartments]
+	);
+
+	// Memoize input change handler
+	const handleInputChange = useCallback(
 		(field: keyof typeof employee) =>
-		(value: string | number | { label: string; value: string }) => {
-			dispatch(
-				setEmployeeData({
-					[field]:
-						typeof value === "string" || typeof value === "number"
-							? value
-							: value?.value,
-				})
-			);
-		};
+			(e: React.ChangeEvent<HTMLInputElement>) => {
+				dispatch(setEmployeeData({ [field]: e.target.value }));
+			},
+		[dispatch]
+	);
+
+	// Memoize select change handler
+	const handleSelectChange = useCallback(
+		(field: keyof typeof employee) =>
+			(value: string | number | { label: string; value: string }) => {
+				dispatch(
+					setEmployeeData({
+						[field]:
+							typeof value === "string" || typeof value === "number"
+								? value
+								: value?.value,
+					})
+				);
+			},
+		[dispatch]
+	);
+
+	// Update employee data when query data changes
+	useEffect(() => {
+		if (employeeId && employeeQuery?.data) {
+			dispatch(setEmployeeData(employeeQuery.data));
+		}
+	}, [employeeQuery?.data, dispatch, employeeId]);
 
 	return (
 		<div className="space-y-2">
@@ -127,10 +150,7 @@ export default function ProfessionalDataForm({
 								<CustomSelect
 									label={t("professionalData.form.fields.facility")}
 									name="facility"
-									options={allFacilaties?.map((el: { name: any; id: any }) => ({
-										label: el?.name,
-										value: el?.id,
-									}))}
+									options={facilityOptions}
 									onValueChange={(e) => {
 										handleSelectChange("facility_id")(e.toString());
 									}}
@@ -146,12 +166,7 @@ export default function ProfessionalDataForm({
 								<CustomSelect
 									label={t("professionalData.form.fields.department")}
 									name="department"
-									options={alldepartments?.map(
-										(el: { name: any; id: any }) => ({
-											label: el?.name,
-											value: el?.id,
-										})
-									)}
+									options={departmentOptions}
 									loading={departmentsLoading}
 									value={
 										typeof employee.department_id === "string"
