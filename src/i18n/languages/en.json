@@ -868,7 +868,12 @@
 			"edit": "Edit",
 			"delete": "Delete"
 		},
-		"employees": ["Faris", "Mohammed", "Ahmed", "Ali"]
+		"employees": [
+			"Faris",
+			"Mohammed",
+			"Ahmed",
+			"Ali"
+		]
 	},
 	"customers": {
 		"title": "Customers",
@@ -1080,7 +1085,6 @@
 			"title": "Down Payment"
 		}
 	},
-
 	"AccountStatementTopComponent": {
 		"title": "Account Statement",
 		"from": "From",
@@ -1519,6 +1523,23 @@
 		"offerDescription": "Offer Description",
 		"save": "Save",
 		"invoices": "Invoices"
+	},
+	"movementacount": {
+		"employee": " ahmed hessin",
+		"credit": 0.0,
+		"debit": 0.0,
+		"transactionType": "not avialible ",
+		"referenceNumber": " not avialible",
+		"account": " not aviallible",
+		"date": "17/12/2024"
+	},
+	"treeAcounts": {
+		"employee": " ahmed hessin",
+		"credit": 0.0,
+		"debit": 0.0,
+		"transactionType": "not avialible ",
+		"referenceNumber": " not avialible",
+		"account": " not aviallible",
+		"date": "17/12/2024"
 	}
-
 }

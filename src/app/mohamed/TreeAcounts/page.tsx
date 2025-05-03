@@ -37,7 +37,7 @@ export default function page() {
 	const { t } = useTypedTranslation();
 	const { data: orderProductsData, isLoading: orderProductsLoading } =
 		useOrderProducts();
-	
+
 	const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
 	const toggleOption = (option: string) => {
@@ -49,35 +49,35 @@ export default function page() {
 	};
 	const orderProductColumns: ColumnDef<OrderProductType>[] = [
 		{
-			header: "تاريخ",
+			header: t("treeAcounts.employee"),
 			accessorKey: "date",
 		},
 		{
-			header: "حساب",
+			header: t("treeAcounts.credit"),
 			accessorKey: "account",
 		},
 		{
-			header: "رقم المرجع",
+			header: t("treeAcounts.referenceNumber"),
 			accessorKey: "referenceNumber",
 		},
 		{
-			header: "نوع الحركة",
+			header: t("treeAcounts.referenceNumber"),
 			accessorKey: "transactionType",
 		},
 		{
-			header: "مدين",
+			header: t("treeAcounts.debit"),
 			accessorKey: "debit",
 		},
 		{
-			header: "دائن",
+			header: t("treeAcounts.credit"),
 			accessorKey: "credit",
 		},
 		{
-			header: "نوع الحركة",
+			header: t("treeAcounts.transactionType"),
 			accessorKey: "transactionType",
 		},
 		{
-			header: "الموظف",
+			header: t("treeAcounts.employee"),
 			accessorKey: "employee",
 		},
 	];

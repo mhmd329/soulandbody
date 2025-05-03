@@ -715,7 +715,6 @@
 		},
 		"exchangeTitle": "فاتورة أستبدال",
 		"ReturnTitle": "فاتورة مرتجع",
-
 		"ReusableManyTable": {
 			"invoiceLabel": "تسمية الفاتورة",
 			"footerLabel": "جدول المرتجعات",
@@ -869,7 +868,12 @@
 			"edit": "تعديل",
 			"delete": "حذف"
 		},
-		"employees": ["فارس", "محمد", "أحمد", "علي"]
+		"employees": [
+			"فارس",
+			"محمد",
+			"أحمد",
+			"علي"
+		]
 	},
 	"customers": {
 		"title": "العملاء",
@@ -1081,7 +1085,6 @@
 			"title": "مبلغ تحت الحساب"
 		}
 	},
-
 	"AccountStatementTopComponent": {
 		"title": "كشف حساب",
 		"from": "من",
@@ -1461,7 +1464,6 @@
 		"remainingAmount": "المبلغ المتبقي",
 		"save": "حفظ"
 	},
-
 	"ordersInUser": {
 		"productName": "اسم المنتج",
 		"quantity": "الكمية",
@@ -1502,7 +1504,7 @@
 			"add": "إضافة"
 		}
 	},
-	"suppliers":{
+	"suppliers": {
 		"title": "موردين",
 		"addSupplier": "اضافة مورد",
 		"addOffer": "اضافة عرض",
@@ -1521,6 +1523,23 @@
 		"offerDescription": "وصف العرض",
 		"save": "حفظ",
 		"invoices": "فواتير"
+	},
+	"movementacount": {
+		"employee": "أحمد حسين",
+		"credit": 0.0,
+		"debit": 0.0,
+		"transactionType": "غير متوفر",
+		"referenceNumber": "غير متوفر",
+		"account": "غير متوفر",
+		"date": "17/12/2024"
+	},
+	"treeAcounts": {
+		"employee": "أحمد حسين",
+		"credit": 0.0,
+		"debit": 0.0,
+		"transactionType": "غير متوفر",
+		"referenceNumber": "غير متوفر",
+		"account": "غير متوفر",
+		"date": "17/12/2024"
 	}
-
 }

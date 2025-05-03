@@ -49,7 +49,7 @@ export default function page() {
 	};
 	const orderProductColumns: ColumnDef<OrderProductType>[] = [
 		{
-			header: "تاريخ",
+			header: t("movementacount.employee"),
 			accessorKey: "date",
 		},
 		{
